@@ -1,0 +1,58 @@
+[Session Title: Binary Search Boundaries and Off-by-One Debugging]
+[Topic: Algorithms & Data Structures - Binary Search]
+[Student: Jordan | Tutor: David]
+
+Tutor: Hey Jordan! Ready to tackle Binary Search today?
+Student: Hey David! Honestly, I understand the concept of splitting the array in half, but my implementation keeps getting stuck in infinite loops or missing the target element when it's at the very end of the array.
+Tutor: Binary Search is notorious for off-by-one errors! Even Donald Knuth noted that while the algorithm was published in 1946, the first bug-free binary search was published years later. So don't feel bad. Let's look at your code.
+Student: Here is my current Python function:
+def binary_search(arr, target):
+    left = 0
+    right = len(arr)
+    while left < right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid
+        else:
+            right = mid
+    return -1
+Tutor: Okay, let's trace this step-by-step with a small example: `arr = [2, 5, 8, 12, 16]` and `target = 16`.
+Student: Okay. `left = 0`, `right = 5`.
+`mid = (0 + 5) // 2 = 2`. `arr[2]` is 8.
+Since 8 < 16, `left = mid = 2`.
+Tutor: Right. Now iteration 2: `left = 2`, `right = 5`.
+Student: `mid = (2 + 5) // 2 = 3`. `arr[3]` is 12.
+Since 12 < 16, `left = mid = 3`.
+Iteration 3: `left = 3`, `right = 5`.
+`mid = (3 + 5) // 2 = 4`. `arr[4]` is 16! It returns index 4!
+Tutor: Nice! Now what happens if `target = 18`, an element that doesn't exist in the array?
+Student: Let's trace it:
+Iteration 3: `left = 3`, `right = 5`. `mid = 4`. `arr[4]` is 16 < 18, so `left = mid = 4`.
+Iteration 4: `left = 4`, `right = 5`. `mid = (4 + 5) // 2 = 4`. `arr[4]` is 16 < 18, so `left = mid = 4` again!
+Wait... `left` stays 4 forever! It's stuck in an infinite loop!
+Tutor: Bingo! Why did `left` get stuck at 4?
+Student: Because `left = mid` didn't move past `mid`! Since we already checked `arr[mid]` and know it's NOT the target, why are we keeping `mid` in our search range?
+Tutor: Exactly! Once you inspect `arr[mid]` and know `arr[mid] < target`, the target MUST lie strictly to the right of `mid`.
+Student: So `left` should be `mid + 1`!
+Tutor: Right! And similarly, if `arr[mid] > target`, what should `right` become?
+Student: If `right` is `len(arr) - 1` (inclusive bound), then `right = mid - 1`!
+Tutor: Perfect. Now let's talk about the loop condition: `while left <= right` vs `while left < right`. If `right = len(arr) - 1`, which condition allows us to check a single-element search space when `left == right`?
+Student: `while left <= right`! Because if `left == right`, there is still 1 element left to check! If we used `<`, we'd exit before checking that last single element!
+Tutor: Spot on, Jordan! Let's update the code with `right = len(arr) - 1`, `while left <= right`, `left = mid + 1`, and `right = mid - 1`.
+Student: [modifies code]
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+Student: Tested it with target=18, it returned `-1` immediately without looping! Tested with target=16, returns index 4!
+Tutor: That was a textbook debugging session. How are you feeling about loop invariants now?
+Student: Honestly, explicitly defining inclusive bounds (`left` to `right`) makes it so clear why `mid + 1` and `mid - 1` are necessary. Thank you David!
