@@ -278,8 +278,8 @@ def evaluate_transcript(
             api_key=gemini_key,
             base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
         )
-        if not model.startswith("gemini"):
-            model = "gemini-1.5-flash"
+        if not model.startswith("gemini") or model in ["gemini-1.5-flash", "gemini-1.5-flash-latest"]:
+            model = "gemini-3.1-flash-lite"
     else:
         client = OpenAI(api_key=openai_key)
 
