@@ -1,0 +1,32 @@
+[Session Title: SQL INNER JOIN vs LEFT JOIN Confusion]
+[Topic: Relational Databases & SQL Queries]
+[Student: Maya | Tutor: Chris]
+
+Tutor: Welcome back, Maya! Today we're working on database queries for your e-commerce project. Where are you getting stuck?
+Student: Hi Chris. I'm building an admin panel to show customer order details. I wrote a SQL query to list all customers and their total order amounts, but half of my customers completely disappeared from the result set!
+Tutor: Oof, missing customer data is scary! Can you read me the SQL query you wrote?
+Student: Sure. I wrote:
+SELECT customers.customer_id, customers.name, orders.order_id, orders.total_amount
+FROM customers
+INNER JOIN orders ON customers.customer_id = orders.customer_id;
+Student: I have 20 customers in my `customers` table, but the query result only returns 11 rows!
+Tutor: Good observation. Let's analyze why that happens. What do those 9 missing customers have in common in your database?
+Student: Um... let me check the database rows. Oh! None of those 9 people have placed any orders yet. They just registered accounts today.
+Tutor: Bingo! Now think about how an `INNER JOIN` works. What is the fundamental rule of `INNER JOIN`?
+Student: I think... it only matches rows that exist in BOTH tables?
+Tutor: Exactly right. If a customer ID exists in `customers` but has no matching rows in `orders`, `INNER JOIN` discards that customer row entirely.
+Student: Ahhh! That makes so much sense! So if I want to keep ALL customers in the report—even the ones with zero orders—what join type should I use?
+Tutor: What join type "preserves" all records from the left-hand table (`customers`) regardless of whether there's a match on the right (`orders`)?
+Student: `LEFT JOIN`! Or `LEFT OUTER JOIN`?
+Tutor: Both refer to the exact same join! `LEFT JOIN` is shorthand for `LEFT OUTER JOIN`. Let's rewrite your query using `LEFT JOIN` and see what happens to `orders.total_amount` for the new customers.
+Student: Okay, writing it now:
+SELECT customers.customer_id, customers.name, orders.order_id, orders.total_amount
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id;
+Student: [runs query] Whoa! Now all 20 rows are showing up! But for the customers who haven't bought anything, `order_id` and `total_amount` say `NULL`. Is `NULL` expected there?
+Tutor: Yes! `NULL` represents the absence of a value because no corresponding order row exists in the `orders` table.
+Student: Nice! What if I want those `NULL` amounts to display as `$0.00` in the output?
+Tutor: You can wrap the column in `COALESCE(orders.total_amount, 0.00)`. `COALESCE` returns the first non-null argument.
+Student: `COALESCE`! That's super handy. Let me add that... perfect, now it displays `0.00` instead of `NULL`.
+Tutor: Fantastic job, Maya. You went from disappearing rows to a polished customer sales report!
+Student: Thanks Chris! I feel way more confident with joins now.

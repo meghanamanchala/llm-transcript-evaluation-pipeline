@@ -1,0 +1,52 @@
+[Session Title: React useEffect Infinite Loop Debugging]
+[Topic: Web Development - React Hooks & Side Effects]
+[Student: Taylor | Tutor: Elena]
+
+Tutor: Hey Taylor! Ready for our React debugging session?
+Student: Hey Elena! I'm losing my mind over a React component. Every time I open my dashboard page, my browser tab freezes, fan starts spinning like a jet engine, and the console floods with thousands of API requests until Chrome crashes!
+Tutor: Ah, the classic infinite render loop of death! That usually points straight to a misconfigured `useEffect` dependency array or state update loop. Let's look at your component code.
+Student: Here is my `UserProfile` component:
+```jsx
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [options, setOptions] = useState({ theme: 'dark' });
+
+  useEffect(() => {
+    fetchUserData(userId, options).then(data => {
+      setUser(data);
+      setOptions({ theme: 'dark', lastFetched: Date.now() });
+    });
+  }, [options]);
+
+  return <div>{user ? user.name : 'Loading...'}</div>;
+}
+```
+Tutor: Look closely at what happens inside the `useEffect` callback function. What statesetter are you calling in line 8?
+Student: `setOptions({ theme: 'dark', lastFetched: Date.now() })`.
+Tutor: And what is listed in your `useEffect` dependency array at the end?
+Student: `[options]`.
+Tutor: Walk me through the component lifecycle starting from initial mount.
+Student: Okay... component mounts -> `useEffect` runs -> calls API -> API returns -> `setOptions` runs -> `options` state object changes...
+Student: Wait... `options` state object changes... which triggers `useEffect` because `options` is in the dependency array!
+Tutor: Bingo! And when `useEffect` triggers again...
+Student: It fetches data again, calls `setOptions` again, updates `options` again, and triggers `useEffect` again in an infinite loop! Oh my gosh, I was updating the exact state variable that my effect was listening to!
+Tutor: Exactly! And creating a new object literal `{ theme: 'dark', lastFetched: Date.now() }` creates a new object reference in memory every single time, so React's shallow comparison always sees `options` as changed!
+Student: Wow, that explains why Chrome died. So how do I fix this?
+Tutor: First, ask yourself: does fetching user data really need to depend on the `options` object changing, or just on `userId` changing?
+Student: Really just `userId`! The API request is fetching data for that specific user.
+Tutor: Right. If you only want to refetch when `userId` changes, what should your dependency array be?
+Student: `[userId]`!
+Tutor: Exactly. And if you need to update `options` without triggering a refetch loop, separate concerns into distinct state variables or separate effects.
+Student: Let me fix it:
+```jsx
+useEffect(() => {
+  fetchUserData(userId).then(data => {
+    setUser(data);
+  });
+}, [userId]);
+```
+Student: [saves file and refreshes browser]
+Student: It loaded once! Exactly 1 API call in the Network tab! No tab freezing!
+Tutor: Beautiful! What's the golden rule for React `useEffect` dependencies?
+Student: Never mutate or set a state variable inside an effect if that same variable is in the effect's dependency array unless you have a clear guard condition!
+Tutor: Boom! Spot on, Taylor. Great job tracking down the root cause.
