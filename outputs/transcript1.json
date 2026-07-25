@@ -1,45 +1,6 @@
 {
-  "status": "ok",
-  "engagement": {
-    "score": 8,
-    "evidence": [
-      "Yeah... it just prints the last item 'evan' five times next to each item!",
-      "Wait, what if I wanted the numbering to start at 1 instead of 0 for a user-facing list?"
-    ],
-    "reasoning": "The student actively shared their broken code attempt and asked proactive follow-up questions."
-  },
-  "clarity": {
-    "score": 9,
-    "evidence": [
-      "enumerate() is a built-in helper that takes a sequence and yields pairs of (index, item) automatically as you iterate."
-    ],
-    "reasoning": "The tutor clearly explained the difference between range(len()) and enumerate with concise syntax examples."
-  },
-  "pacing": {
-    "score": 9,
-    "evidence": [
-      "Moved efficiently from diagnosing the -1 index bug to range(len()) and introducing enumerate."
-    ],
-    "reasoning": "Excellent progression speed, allowing the student to experiment with custom start parameters."
-  },
-  "notable_moments": [
-    {
-      "timestamp": "Turn 4",
-      "category": "misconception",
-      "quote": "I thought -1 meant 'the current item minus one step' or something?",
-      "event": "Student vocalized misunderstanding of negative list indexing in Python loops."
-    },
-    {
-      "timestamp": "Turn 8",
-      "category": "breakthrough",
-      "quote": "Oh, wow. You don't have to write items[index] at all?",
-      "event": "Student understood tuple unpacking provided by Python enumerate function."
-    }
-  ],
-  "recommendations": [
-    "Encourage student to write a short code snippet independently before revealing syntax.",
-    "Reinforce positive learning behaviors like asking about optional parameters."
-  ],
-  "overall_feedback": "Highly effective session. The tutor helped the student overcome indexing confusion and adopt Pythonic conventions.",
-  "confidence": 0.95
+  "status": "failed",
+  "error": "Exhausted 2 attempts. Last error: OpenAI API Error (RateLimitError): Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+  "attempts": 2,
+  "raw_response": "{\n  \"status\": \"failed\",\n  \"error\": \"OpenAI API Error (RateLimitError): Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}\"\n}"
 }
