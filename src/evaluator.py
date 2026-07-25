@@ -285,20 +285,27 @@ def evaluate_transcript(
             "content": f"Correction Required: {extra_feedback_prompt}"
         })
 
-    response = client.chat.completions.create(
-        model=model,
-        messages=messages,
-        response_format={"type": "json_object"},
-        temperature=0.2
-    )
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            response_format={"type": "json_object"},
+            temperature=0.2
+        )
 
-    raw_response = response.choices[0].message.content or "{}"
-    latency_ms = round((time.time() - start_time) * 1000, 2)
+        raw_response = response.choices[0].message.content or "{}"
+        latency_ms = round((time.time() - start_time) * 1000, 2)
 
-    usage = {
-        "input_tokens": getattr(response.usage, "prompt_tokens", 0),
-        "output_tokens": getattr(response.usage, "completion_tokens", 0),
-        "total_tokens": getattr(response.usage, "total_tokens", 0)
-    }
-
-    return raw_response, usage, latency_ms
+        usage = {
+            "input_tokens": getattr(response.usage, "prompt_tokens", 0),
+            "output_tokens": getattr(response.usage, "completion_tokens", 0),
+            "total_tokens": getattr(response.usage, "total_tokens", 0)
+        }
+        return raw_response, usage, latency_ms
+    except Exception as e:
+        latency_ms = round((time.time() - start_time) * 1000, 2)
+        failed_payload = json.dumps({
+            "status": "failed",
+            "error": f"OpenAI API Error ({type(e).__name__}): {str(e)}"
+        }, indent=2)
+        return failed_payload, {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}, latency_ms
