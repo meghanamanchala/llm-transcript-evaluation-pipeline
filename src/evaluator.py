@@ -249,19 +249,20 @@ def evaluate_transcript(
     extra_feedback_prompt: Optional[str] = None
 ) -> Tuple[str, Dict[str, int], float]:
     """
-    Call OpenAI Chat Completion API (or mock generator) to evaluate transcript.
+    Call OpenAI or Gemini API (or mock generator) to evaluate transcript.
 
     Returns:
         Tuple of (raw_response_str, usage_dict, latency_ms)
     """
     start_time = time.time()
-    api_key = os.getenv("OPENAI_API_KEY")
+    openai_key = os.getenv("OPENAI_API_KEY")
+    gemini_key = os.getenv("GEMINI_API_KEY")
 
-    if mock or not api_key or not OPENAI_AVAILABLE:
+    # If mock flag is True or no API keys available, fallback to mock mode
+    if mock or (not openai_key and not gemini_key) or not OPENAI_AVAILABLE:
         time.sleep(0.15)  # Simulate network latency
         raw_response = generate_mock_evaluation(transcript_text)
         latency_ms = round((time.time() - start_time) * 1000, 2)
-        # Approximate token counts based on text length (~4 chars per token)
         input_tokens = len(transcript_text) // 4 + 400
         output_tokens = len(raw_response) // 4
         usage = {
@@ -271,7 +272,17 @@ def evaluate_transcript(
         }
         return raw_response, usage, latency_ms
 
-    client = OpenAI(api_key=api_key)
+    # Configure client based on available key / model preference
+    if gemini_key and (model.startswith("gemini") or not openai_key):
+        client = OpenAI(
+            api_key=gemini_key,
+            base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+        )
+        if not model.startswith("gemini"):
+            model = "gemini-1.5-flash"
+    else:
+        client = OpenAI(api_key=openai_key)
+
     system_prompt = load_system_prompt(prompt_path)
 
     messages = [
@@ -306,6 +317,6 @@ def evaluate_transcript(
         latency_ms = round((time.time() - start_time) * 1000, 2)
         failed_payload = json.dumps({
             "status": "failed",
-            "error": f"OpenAI API Error ({type(e).__name__}): {str(e)}"
+            "error": f"API Error ({type(e).__name__}): {str(e)}"
         }, indent=2)
         return failed_payload, {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0}, latency_ms

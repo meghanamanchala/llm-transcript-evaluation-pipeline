@@ -158,7 +158,7 @@ def run_batch(
 
 def main() -> None:
     """Main CLI entrypoint."""
-    default_model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    default_model = os.getenv("MODEL") or os.getenv("OPENAI_MODEL", "gemini-1.5-flash")
 
     parser = argparse.ArgumentParser(
         description="LLM Transcript Evaluation Pipeline Runner"
