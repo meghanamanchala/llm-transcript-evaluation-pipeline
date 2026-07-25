@@ -1,0 +1,45 @@
+{
+  "status": "ok",
+  "engagement": {
+    "score": 9,
+    "evidence": [
+      "I have 20 customers in my customers table, but the query result only returns 11 rows!",
+      "What if I want those NULL amounts to display as $0.00 in the output?"
+    ],
+    "reasoning": "Student brought a real database bug and immediately tested suggestions in real time."
+  },
+  "clarity": {
+    "score": 9,
+    "evidence": [
+      "What join type 'preserves' all records from the left-hand table regardless of whether there's a match on the right?"
+    ],
+    "reasoning": "Tutor used Socratic questioning to help student deduce the difference between INNER and LEFT JOIN."
+  },
+  "pacing": {
+    "score": 8,
+    "evidence": [
+      "Steady pacing that allowed student to run SQL queries step by step."
+    ],
+    "reasoning": "Pacing was well balanced between conceptual explanation and query refinement."
+  },
+  "notable_moments": [
+    {
+      "timestamp": "Turn 3",
+      "category": "misconception",
+      "quote": "half of my customers completely disappeared from the result set!",
+      "event": "Student discovered that INNER JOIN excludes unmatched customer rows."
+    },
+    {
+      "timestamp": "Turn 11",
+      "category": "breakthrough",
+      "quote": "Now all 20 rows are showing up! But for customers who haven't bought anything... NULL",
+      "event": "Student verified correct LEFT JOIN output and NULL handling."
+    }
+  ],
+  "recommendations": [
+    "Spend a minute explaining RIGHT JOIN vs FULL OUTER JOIN for completeness.",
+    "Encourage student to draw Venn diagrams for complex multi-table joins."
+  ],
+  "overall_feedback": "Great tutoring session. The student mastered SQL join semantics and NULL handling with COALESCE.",
+  "confidence": 0.94
+}

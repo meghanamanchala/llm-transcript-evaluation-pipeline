@@ -217,7 +217,7 @@ def generate_mock_evaluation(transcript_text: str) -> str:
                 "reasoning": "Tutor built intuitive physical models for F=ma before introducing algebraic manipulation."
             },
             "pacing": {
-                "score": 8.5,
+                "score": 8,
                 "evidence": [
                     "Pacing was steady, moving from qualitative cart analogy to net force calculations."
                 ],
