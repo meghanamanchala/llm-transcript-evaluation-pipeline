@@ -6,15 +6,15 @@
       "Wait... options state object changes... which triggers useEffect because options is in the dependency array!",
       "Let me fix it: [saves file and refreshes browser]"
     ],
-    "reasoning": "The student was highly active, took ownership of the debugging process, and successfully applied the tutor's guidance to resolve the issue independently."
+    "reasoning": "The student was highly engaged, actively participating in the debugging process, and successfully applied the tutor's guidance to resolve the issue independently."
   },
   "clarity": {
     "score": 10,
     "evidence": [
       "Look closely at what happens inside the useEffect callback function. What statesetter are you calling in line 8?",
-      "Exactly! And creating a new object literal { theme: 'dark', lastFetched: Date.now() } creates a new object reference in memory every single time"
+      "And creating a new object literal { theme: 'dark', lastFetched: Date.now() } creates a new object reference in memory every single time"
     ],
-    "reasoning": "The tutor used the Socratic method effectively, guiding the student to the answer rather than just providing it, and explained the technical nuance of object reference equality clearly."
+    "reasoning": "The tutor used the Socratic method effectively, guiding the student to identify the bug themselves rather than just providing the answer. The technical explanation regarding object references was accurate and clear."
   },
   "pacing": {
     "score": 9,
@@ -22,21 +22,21 @@
       "Walk me through the component lifecycle starting from initial mount.",
       "And if you need to update options without triggering a refetch loop, separate concerns into distinct state variables or separate effects."
     ],
-    "reasoning": "The session moved at an excellent pace. The tutor allowed the student time to think through the lifecycle, and the transition from identifying the bug to implementing the fix was logical and efficient."
+    "reasoning": "The session moved at a perfect pace. It allowed for diagnostic thinking, immediate application of the fix, and a brief discussion on best practices for future development."
   },
   "notable_moments": [
     {
       "timestamp": "Turn 7",
       "category": "breakthrough",
       "quote": "Wait... options state object changes... which triggers useEffect because options is in the dependency array!",
-      "event": "The student successfully identified the root cause of the infinite loop through guided questioning."
+      "event": "The student successfully identified the root cause of the infinite loop."
     }
   ],
   "recommendations": [
     "Encourage the student to explore the 'exhaustive-deps' ESLint rule to catch these issues automatically in the future.",
-    "Discuss the use of 'useRef' or 'useMemo' as potential alternatives if the student ever truly needs to track object state without triggering effects.",
-    "Briefly touch upon the 'cleanup function' in useEffect to ensure the student understands how to handle race conditions if the component unmounts during an API call."
+    "Briefly discuss the use of 'useRef' or 'useMemo' if the student ever truly needs to track object state without triggering effects.",
+    "Suggest a follow-up exercise where the student intentionally creates a 'guard condition' to see how it prevents infinite loops."
   ],
-  "overall_feedback": "This was an exemplary tutoring session. The tutor demonstrated excellent pedagogical skill by using the Socratic method to lead the student to the 'aha!' moment. The technical explanation regarding object reference equality was accurate and highly relevant to the student's specific bug. The student was fully engaged and demonstrated mastery by summarizing the 'golden rule' at the end of the session.",
+  "overall_feedback": "This was an excellent tutoring session. The tutor demonstrated strong pedagogical skills by facilitating a 'lightbulb moment' for the student. The technical content was accurate, and the student left the session with a clear understanding of React's dependency array behavior.",
   "confidence": 1.0
 }

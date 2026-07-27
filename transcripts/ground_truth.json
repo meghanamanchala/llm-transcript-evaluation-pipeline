@@ -1,0 +1,127 @@
+[
+  {
+    "transcript": "transcript1",
+    "engagement": {
+      "score": 8,
+      "evidence": [
+        "Yeah... it just prints the last item 'evan' five times next to each item!",
+        "Wait, what if I wanted the numbering to start at 1 instead of 0 for a user-facing list?"
+      ],
+      "notes": "Student actively asked proactive clarifying questions."
+    },
+    "clarity": {
+      "score": 9,
+      "evidence": [
+        "enumerate() is a built-in helper that takes a sequence and yields pairs of (index, item) automatically as you iterate."
+      ],
+      "notes": "Tutor explained Python enumerate syntax clearly with concise examples."
+    },
+    "pacing": {
+      "score": 9,
+      "evidence": [
+        "Moved efficiently from diagnosing the -1 index bug to range(len()) and introducing enumerate."
+      ],
+      "notes": "Pacing allowed student to experiment."
+    }
+  },
+  {
+    "transcript": "transcript2",
+    "engagement": {
+      "score": 9,
+      "evidence": [
+        "I have 20 customers in my customers table, but the query result only returns 11 rows!",
+        "What if I want those NULL amounts to display as $0.00 in the output?"
+      ],
+      "notes": "Student tested SQL queries live."
+    },
+    "clarity": {
+      "score": 9,
+      "evidence": [
+        "What join type 'preserves' all records from the left-hand table regardless of whether there's a match on the right?"
+      ],
+      "notes": "Socratic question guided student to LEFT JOIN."
+    },
+    "pacing": {
+      "score": 8,
+      "evidence": [
+        "Steady pacing that allowed student to run SQL queries step by step."
+      ],
+      "notes": "Methodical step-by-step query construction."
+    }
+  },
+  {
+    "transcript": "transcript3",
+    "engagement": {
+      "score": 8,
+      "evidence": [
+        "Wait... left stays 4 forever! It's stuck in an infinite loop!",
+        "So left should be mid + 1!"
+      ],
+      "notes": "Student actively traced loop indexes."
+    },
+    "clarity": {
+      "score": 9,
+      "evidence": [
+        "Once you inspect arr[mid] and know arr[mid] < target, the target MUST lie strictly to the right of mid."
+      ],
+      "notes": "Clear binary search space reduction logic."
+    },
+    "pacing": {
+      "score": 8,
+      "evidence": [
+        "Appropriate speed, methodical dry-running of algorithm steps."
+      ],
+      "notes": "Well controlled debugging pace."
+    }
+  },
+  {
+    "transcript": "transcript4",
+    "engagement": {
+      "score": 9,
+      "evidence": [
+        "browser tab freezes, fan starts spinning like a jet engine, and console floods with thousands of API requests",
+        "Wait... options state object changes... which triggers useEffect because options is in the dependency array!"
+      ],
+      "notes": "Student traced React re-render cycle."
+    },
+    "clarity": {
+      "score": 9,
+      "evidence": [
+        "creating a new object literal... creates a new object reference in memory every single time"
+      ],
+      "notes": "Tutor explained JS object reference equality."
+    },
+    "pacing": {
+      "score": 9,
+      "evidence": [
+        "Quickly identified infinite loop, explained reference equality, and verified fix."
+      ],
+      "notes": "Fast and effective debugging."
+    }
+  },
+  {
+    "transcript": "transcript5",
+    "engagement": {
+      "score": 8,
+      "evidence": [
+        "Honestly, I don't really know. It's just a formula to me right now.",
+        "Oh! I get the words, but on tests I get confused..."
+      ],
+      "notes": "Student vocalized physics misconceptions freely."
+    },
+    "clarity": {
+      "score": 9,
+      "evidence": [
+        "imagine pushing an empty cart vs cart filled with heavy cases of canned soup"
+      ],
+      "notes": "Effective shopping cart physical intuition."
+    },
+    "pacing": {
+      "score": 8,
+      "evidence": [
+        "Pacing was steady, moving from qualitative cart analogy to net force calculations."
+      ],
+      "notes": "Smooth transition from analogy to formula."
+    }
+  }
+]

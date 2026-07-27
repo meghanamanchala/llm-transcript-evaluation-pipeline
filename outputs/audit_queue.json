@@ -1,0 +1,20 @@
+[
+  {
+    "transcript": "transcript1",
+    "metric": "engagement",
+    "llm_score": 10,
+    "human_score": 8,
+    "diff": 2,
+    "llm_reasoning": "The student is highly engaged, proactively sharing their thought process, asking insightful follow-up questions, and immediately applying the new concept to test their understanding.",
+    "human_notes": "Student actively asked proactive clarifying questions."
+  },
+  {
+    "transcript": "transcript3",
+    "metric": "engagement",
+    "llm_score": 10,
+    "human_score": 8,
+    "diff": 2,
+    "llm_reasoning": "The student was highly active, performing their own traces, identifying the infinite loop independently, and successfully applying the logic to fix the code.",
+    "human_notes": "Student actively traced loop indexes."
+  }
+]

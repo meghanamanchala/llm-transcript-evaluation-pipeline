@@ -15,29 +15,35 @@
       "Let's throw out the numbers for a moment and build a real-world analogy.",
       "The factor of 2 cancels out top and bottom, so acceleration stays unchanged!"
     ],
-    "reasoning": "The tutor used an excellent pedagogical approach by stripping away math to build conceptual intuition first. The shopping cart analogy was perfectly aligned with the student's prior knowledge and effectively bridged the gap to algebraic manipulation."
+    "reasoning": "The tutor used an excellent pedagogical strategy by stripping away the math to build conceptual intuition first. The shopping cart analogy was perfectly aligned with the student's prior experience, and the transition back to algebra was seamless."
   },
   "pacing": {
     "score": 9,
     "evidence": [
-      "Tutor: Let's throw out the numbers for a moment...",
-      "Tutor: Absolutely. Suppose you push a 10 kg box..."
+      "Tutor: Great question! Let's test that on our shopping cart.",
+      "Tutor: Absolutely. Suppose you push a 10 kg box with 50 N of horizontal force"
     ],
-    "reasoning": "The session moved at an ideal pace. The tutor allowed the student to discover the relationship between variables before introducing the formal equation, and transitioned to application only after the student confirmed conceptual mastery."
+    "reasoning": "The session moved at an ideal pace. The tutor allowed the student to lead the conceptual discovery and only introduced the friction problem once the student confirmed they were ready for a higher level of difficulty."
   },
   "notable_moments": [
     {
-      "timestamp": "Turn 11",
+      "timestamp": "Turn 12",
       "category": "breakthrough",
       "quote": "Oh wow... 2/2 = 1! So acceleration doesn't change at all!",
-      "event": "The student successfully connected the conceptual 'double force/double mass' scenario to the algebraic cancellation of variables."
+      "event": "The student successfully connected the algebraic manipulation of the formula to the physical reality of the shopping cart analogy."
+    },
+    {
+      "timestamp": "Turn 14",
+      "category": "question",
+      "quote": "Can we do one more example with friction added?",
+      "event": "The student demonstrated self-efficacy by requesting to apply their new knowledge to a more complex scenario."
     }
   ],
   "recommendations": [
-    "Encourage the student to draw free-body diagrams for the friction problem to reinforce the visual representation of forces.",
-    "Introduce a 'what-if' scenario where the force is applied at an angle to challenge the student's understanding of vector components.",
-    "Ask the student to explain the concept back to the tutor in their own words to ensure long-term retention."
+    "Introduce a 'predict-observe-explain' cycle for the friction problem to further solidify the concept of net force.",
+    "Encourage the student to draw a Free Body Diagram (FBD) for the friction problem to bridge the gap between mental models and formal physics notation.",
+    "Ask the student to generate their own 'what if' scenario (e.g., what if the surface was ice?) to test the limits of their conceptual understanding."
   ],
-  "overall_feedback": "This was an exemplary tutoring session. The tutor successfully shifted the student's mindset from rote memorization to conceptual understanding by using relatable analogies. The progression from qualitative reasoning to quantitative application was smooth and logically sound.",
+  "overall_feedback": "This was an exemplary tutoring session. The tutor successfully shifted the student's mindset from rote memorization to conceptual understanding by using relatable analogies. The student's confidence grew visibly, and the tutor's ability to scaffold the complexity of the problems kept the student in the 'zone of proximal development' throughout the entire interaction.",
   "confidence": 1.0
 }
